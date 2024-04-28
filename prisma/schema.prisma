@@ -12,3 +12,39 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Owner {
+  ownerId  Int    @id @default(autoincrement())
+  fullName String
+  address  String
+  dogs     Dog[]
+}
+
+model Dog {
+  dogId    Int       @id @default(autoincrement())
+  name     String
+  breed    String
+  owner    Owner     @relation(fields: [ownerId], references: [ownerId])
+  ownerId  Int
+  bookings Booking[]
+  @@unique([name, ownerId])
+}
+
+model Room {
+  roomId     Int       @id @default(autoincrement())
+  roomNumber Int
+  name       String
+  size       Int
+  bookings   Booking[]
+}
+
+model Booking {
+  bookId    Int       @id @default(autoincrement())
+  entryDate DateTime
+  exitDate  DateTime?
+  Dog       Dog       @relation(fields: [dogId], references: [dogId])
+  dogId     Int
+  Room      Room      @relation(fields: [roomId], references: [roomId])
+  roomId    Int
+  price     Int 
+}
