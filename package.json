@@ -4,12 +4,22 @@
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest",
-    "prisma": "^5.13.0"
+    "@types/yargs": "^17.0.32",
+    "prisma": "^5.13.0",
+    "yargs": "^17.7.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
     "@prisma/client": "5.13.0"
+  },
+  "scripts": {
+    "get:owners": "bun src/get_all_owners.ts",
+    "get:dogs": "bun src/get_all_dogs.ts",
+    "get:breeds": "bun src/get_all_breeds.ts",
+    "get:booked:rooms": "bun src/get_booked_rooms.ts",
+    "get:dogs:by:owner": "bun src/get_dogs_by_owner.ts",
+    "get:owner:by:dog":  "bun src/get_owner_by_dog.ts"
   }
 }

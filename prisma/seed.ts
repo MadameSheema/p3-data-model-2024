@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-const db = new PrismaClient();
+import { db } from './db';
 
 const createOwner = async (fullName: string, address: string) => {
     return await db.owner.create({
