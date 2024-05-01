@@ -21,7 +21,7 @@
     "get:breeds": "bun src/get_all_breeds.ts",
     "get:booked:rooms": "bun src/get_booked_rooms.ts",
     "get:dogs:by:owner": "bun src/get_dogs_by_owner.ts",
-    "get:owner:by:dog": "bun src/get_owner_by_dog.ts",
-    "add:dog:to:owner": "bun src/add_dog_to_owner.ts"
+    "add:dog:to:owner": "bun src/add_dog_to_owner.ts",
+    "delete:booking": "bun src/delete_booking.ts"
   }
 }
