@@ -2,7 +2,7 @@ import yargs from "yargs";
 import { db } from "../prisma/db";
 import { prismaCatchErrors } from "./prisma_catch_errors";
 
-const getAllDogs = async () => {
+const getAllDogs = async (): Promise<void> => {
     const dogs = await db.dog.findMany({
         select: {
             name: true,
