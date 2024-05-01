@@ -16,6 +16,7 @@ datasource db {
 model Owner {
   ownerId  Int    @id @default(autoincrement())
   fullName String
+  email    String @unique
   address  String
   dogs     Dog[]
 }
