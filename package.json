@@ -22,6 +22,7 @@
     "get:booked:rooms": "bun src/get_booked_rooms.ts",
     "get:dogs:by:owner": "bun src/get_dogs_by_owner.ts",
     "add:dog:to:owner": "bun src/add_dog_to_owner.ts",
-    "delete:booking": "bun src/delete_booking.ts"
+    "delete:booking": "bun src/delete_booking.ts",
+    "update:owner:email": "bun src/update_owner_email.ts"
   }
 }
