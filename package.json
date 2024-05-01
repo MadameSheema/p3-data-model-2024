@@ -6,7 +6,8 @@
     "@types/bun": "latest",
     "@types/yargs": "^17.0.32",
     "prisma": "^5.13.0",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "zod": "^3.23.5"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -20,6 +21,7 @@
     "get:breeds": "bun src/get_all_breeds.ts",
     "get:booked:rooms": "bun src/get_booked_rooms.ts",
     "get:dogs:by:owner": "bun src/get_dogs_by_owner.ts",
-    "get:owner:by:dog":  "bun src/get_owner_by_dog.ts"
+    "get:owner:by:dog": "bun src/get_owner_by_dog.ts",
+    "add:dog:to:owner": "bun src/add_dog_to_owner.ts"
   }
 }

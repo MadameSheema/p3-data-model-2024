@@ -1,4 +1,4 @@
-import { PrismaClientValidationError } from '@prisma/client/runtime/library';
+import { prismaCatchErrors } from '../src/error_handling';
 import { db } from './db';
 import { type Booking, type Dog, type Owner, type Room } from "@prisma/client";
 
@@ -56,17 +56,6 @@ const ownerLog = (fullName: string, ownerId: number) => console.log(`Created own
 const dogLog = (name: string, dogId: number) => console.log(`Created dog with name: ${name} and id: ${dogId}`);
 const roomLog = (name: string, roomId: number) => console.log(`Created room with name: ${name} and id: ${roomId}`);
 const bookingLog = (bookingId: number) => console.log(`Created boowking with id: ${bookingId}`);
-
-
-const prismaCatchErrors = async (myMethod: any) => {
-    try {
-        return await myMethod
-    } catch (e) {
-        const prismaError = e as PrismaClientValidationError;
-        console.log(prismaError.message);
-        process.exit(1);
-    }
-}
 
 const gloria = await prismaCatchErrors(createOwner('Gloria Hornero', 'gloria@test.com', 'Sant Pere de Ribes'));
 if (gloria)  ownerLog(gloria.fullName, gloria.ownerId);
