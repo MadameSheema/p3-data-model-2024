@@ -1,4 +1,6 @@
+import yargs from "yargs";
 import { db } from "../prisma/db";
+import { prismaCatchErrors } from "./prisma_catch_errors";
 
 const getAllDogs = async () => {
     const dogs = await db.dog.findMany({
@@ -15,4 +17,14 @@ const getAllDogs = async () => {
     }
 };
 
-await getAllDogs();
+const cli = async () => {
+    await yargs(process.argv.slice(2))
+    .usage('Retrieves all the dogs names. No options needed.')
+    .help().
+    version(false)
+    .argv;
+
+    await prismaCatchErrors(getAllDogs());
+};
+
+await cli();
