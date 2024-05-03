@@ -1,20 +1,206 @@
-# Modelo de Datos
+# Index
 
-En esta práctica hay que desarrollar el modelo de datos para una aplicación que resulte de tu interés. (No es necesario pensar en la autenticación aún, estudiaremos eso por separado.)
+* [Data Model](#data-model)
+* [Configuration](#configuration)
+* [Database seeding](#database-seeding)
+* [Crud operations](#crud-operations)
+  * [Retrieve dogs names](#retrieve-dogs-names)
+  * [Retrieve all dogs breeds](#retrieve-all-dogs-breeds)
+  * [Retrieve all owners names](#retrieve-all-owners-names)
+  * [Get all the dogs an owner has](#get-all-the-dogs-an-owner-has)
+  * [Get current booked rooms](#get-current-booked-rooms)
+  * [Get room availability](#get-room-availability)
+  * [Add dog to owner](#add-dog-to-owner)
+  * [Update owner email](#update-owner-email)
 
-Se trata, como otras veces, de hacer un _fork_ de este repositorio y trabajar en él.
+# Data Model
 
-La solución del ejercicio debe ser un proyecto Javascript con:
-- El esquema de Prisma (`schema.prisma`).
-- La configuración para una base de datos (con `docker-compose.yml`).
-- Rellenado con unos pocos datos de prueba.
-- Scripts en Typescript de demostración que hacen algunas cosas con los datos.
-- Documentación sobre cómo lanzar la base de datos y usar los scripts de demostración (sustituyendo este mismo README).
+In this exercise, we are developing the data model of a simple dog hotel registration system.
 
-## Esquema
+![Database Model](model.png)
 
-El esquema debe tener almenos 3 entidades, pero no hay límite superior. Empieza siempre por definir las entidades más importantes, y asegúrate de que las relaciones cumplen con las necesidades que has planteado (nunca hay una única solución, cada solución tienes sus ventajas e inconvenientes, simplemente hay que ser conscientes de ellos). Luego añade entidades para hacer crecer el modelo. No intentes hacerlo todo de golpe (a no ser que ya tengas experiencia).
 
-## Rellenado de datos de prueba
+## Configuration
 
-Para crear los datos iniciales con los que poder hacer algo al principio se puede usar cualquier mecanismo que automatice la inserción. Se recomienda mirar la documentación sobre como usar `seed.ts` en Prisma, que es una manera semi-estandarizada.
+1. At the project root directory create a `.env` file with the following content:
+
+```
+POSTGRES_USER="dogHotel"
+POSTGRES_PASSWORD="dogHotel123"
+POSTGRES_DB="playground"
+DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}"
+```
+
+Execute all the following commands from the root directory of the project.
+
+2. Install all the dependencies
+
+```cli
+bun install
+```
+
+3. Start the database
+
+```bash
+docker-compose up
+```
+
+4. Apply the Prisma schema to the database
+
+```bash
+bun push:db
+```
+
+## Database Seeding
+
+1. Seed the database with some test data
+
+```bash
+bun seed
+```
+
+## CRUD operations
+
+Several CRUD operations have been implemented:
+
+### Retrieve dogs names
+
+Display the command help:
+
+```bash
+bun get:dogs --help
+```
+
+Retrieves dogs names:
+
+```bash
+bun get:dogs
+```
+
+### Retrieve all dogs breeds
+
+Display the command help:
+
+```bash
+bun get:breeds --help
+```
+
+Retrieves dogs breeds:
+
+```bash
+bun get:breeds
+```
+
+### Retrieve all owners names
+
+Display the command help:
+
+```bash
+bun get:owners --help
+```
+
+Retrieves all owners names:
+
+```bash
+bun get:owners
+```
+
+### Get all the dogs an owner has
+
+Display the command help:
+
+```bash
+bun get:dogs:by:owner --help
+```
+
+Retrieves all owners names:
+
+```bash
+bun get:owners --email <ownerEmail>
+```
+
+Example:
+
+```bash
+bun get:dogs:by:owner --email ariadna@test.com
+```
+
+### Get current booked rooms
+
+Display the command help:
+
+```bash
+bun current:booked:rooms --help
+```
+
+Retrieves all current booked rooms:
+
+```bash
+bun current:booked:rooms
+```
+
+### Get room availability
+
+Display the command help:
+
+```bash
+bun room:availability --help
+```
+
+Retrieves the availability for a specific room given an entry date.
+
+```bash
+bun room:availability --rom-number <roomNumber> --entry-date <entryDate>
+```
+
+Example:
+
+```bash
+bun room:availability --room-number 720 --entry-date 2024-05-02T17:00:00.000Z
+```
+
+### Add dog to owner
+
+Display the command help:
+
+```bash
+bun add:dog:to:owner --help
+```
+
+Adds a new dog to an existing owner
+
+```bash
+bun add:dog:to:owner ---dog-name <dogName> --breed <breed> --email <ownerEmail>
+```
+
+Example:
+
+```bash
+bun add:dog:to:owner ---dog-name Latte --breed Mix --email gloria@test.com
+```
+
+### Update owner email
+
+Display the command help:
+
+```bash
+bun update:owner:email --help
+```
+
+Updates the email for a given owner.
+
+```bash
+bun update:owner:email ---email <currentEmail> --new-email <newEmail>
+```
+
+Example:
+
+```bash
+bun update:owner:email --email gloria@test.com --new-email glo@test.com
+```
+
+### Create booking
+
+### Delete booking
+
+    
