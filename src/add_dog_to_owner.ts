@@ -4,16 +4,13 @@ import { object, string } from 'zod';
 import { prismaCatchErrors, schemaCatchErrors } from "./error_handling";
 
 const addDogToOwner = async (dogName: string, breed: string, email: string): Promise<void> => {
-    const owner = await db.owner.findFirst({
+    const owner = await db.owner.findUnique({
         select: {
             email: true,
             ownerId: true
         },
         where: {
-            fullName: {
-                equals: email,
-                mode: 'insensitive'
-            }
+            email
         }
     });
 

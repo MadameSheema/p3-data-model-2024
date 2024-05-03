@@ -10,17 +10,34 @@ const getDogsByOwner = async (email: string): Promise<void> => {
         },
         where: {
             owner: {
-                fullName: {
-                    equals: email,
-                    mode: 'insensitive'
-                }
+                email: {
+                    equals: email
+                },
             }
-        }
+        },
     });
 
-    for (const dog of dogs) {
-        console.log(dog.name);
-    };
+    if (dogs.length === 0) {
+        const owner = await db.owner.findUnique({
+            select: {
+                email: true,
+            },
+            where: {
+                email: email
+            }
+        });
+
+        if (owner) {
+            console.log(`Owner with email ${email} does not have any dog related.`);
+        } else {
+            console.log(`Owner with email ${email} does not exist in the database.`);
+        }
+
+    } else {
+        for (const dog of dogs) {
+            console.log(dog.name);
+        }
+    }
 };
 
 const optionsSchema = object({

@@ -17,15 +17,17 @@
     "@prisma/client": "5.13.0"
   },
   "scripts": {
-    "get:owners": "bun src/get_all_owners.ts",
-    "get:dogs": "bun src/get_all_dogs.ts",
-    "get:breeds": "bun src/get_all_breeds.ts",
-    "get:booked:rooms": "bun src/get_booked_rooms.ts",
-    "get:dogs:by:owner": "bun src/get_dogs_by_owner.ts",
     "add:dog:to:owner": "bun src/add_dog_to_owner.ts",
-    "delete:booking": "bun src/delete_booking.ts",
-    "update:owner:email": "bun src/update_owner_email.ts",
     "create:booking": "bun src/create_booking.ts",
-    "room:availability": "bun src/get_room_availability.ts"
+    "current:booked:rooms": "bun src/get_current_booked_rooms.ts",
+    "delete:booking": "bun src/delete_booking.ts",
+    "get:breeds": "bun src/get_all_breeds.ts",
+    "get:dogs": "bun src/get_all_dogs.ts",
+    "get:dogs:by:owner": "bun src/get_dogs_by_owner.ts",
+    "get:owners": "bun src/get_all_owners.ts",
+    "push:db": "bunx prisma db push",
+    "room:availability": "bun src/get_room_availability.ts",
+    "seed": "bun prisma/seed.ts",
+    "update:owner:email": "bun src/update_owner_email.ts"
   }
 }
