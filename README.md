@@ -1,6 +1,6 @@
 # Index
 
-* [Data Model](#data-model)
+* [Data model](#data-model)
 * [Configuration](#configuration)
 * [Database seeding](#database-seeding)
 * [Crud operations](#crud-operations)
@@ -12,6 +12,7 @@
   * [Get room availability](#get-room-availability)
   * [Add dog to owner](#add-dog-to-owner)
   * [Update owner email](#update-owner-email)
+  * [Delete booking](#delete-booking)
 
 # Data Model
 
@@ -203,4 +204,21 @@ bun update:owner:email --email gloria@test.com --new-email glo@test.com
 
 ### Delete booking
 
+Display the command help:
+
+```bash
+bun delete:booking --help
+```
+
+Deletes a booking.
+
+```bash
+bun delete:booking --dog-name <dogName> --entrydate <entryDate>
+```
+
+Example:
+
+```bash
+bun delete:booking --dogname canino --entrydate 2024-04-28T08:00:00.000Z
+```
     

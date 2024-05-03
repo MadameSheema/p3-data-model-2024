@@ -38,16 +38,16 @@ const createRoom = async (name: string, roomNumber: number, size: number): Promi
     })
 };
 
-const createBooking = async (entryDate: string, exitDate: string, price: number, dogId: number, roomId: number): Promise<Booking> => {
+const createBooking = async (dogId: number, roomId: number, entryDate: string, exitDate?: string, price?: number, ): Promise<Booking> => {
     console.log(`Creating booking for the dogId: ${dogId}`);
 
     return await db.booking.create({
         data: {
-            entryDate,
-            exitDate,
-            price,
             dogId,
             roomId,
+            entryDate,
+            exitDate,
+            price
         }
     })
 };
@@ -76,5 +76,7 @@ if (gardenRoom) roomLog(gardenRoom.name, gardenRoom.roomId);
 const dreamRoom = await prismaCatchErrors(createRoom('The Dream', 720, 60));
 if(dreamRoom) roomLog(dreamRoom.name, dreamRoom.roomId);
 
-const caninoBooking = await prismaCatchErrors(createBooking('2024-04-28T08:00:00Z', '2024-05-03T17:00:00Z', 300, canino.dogId, dreamRoom.roomId));
+const caninoBooking = await prismaCatchErrors(createBooking(canino.dogId, dreamRoom.roomId, '2024-04-28T08:00:00Z', '2024-05-03T17:00:00Z', 300));
 if (caninoBooking) bookingLog(caninoBooking.bookingId);
+const avatarBooking = await prismaCatchErrors(createBooking(avatar.dogId, jungleRoom.roomId, '2024-04-28T08:00:00Z'));
+if (avatarBooking) bookingLog(avatarBooking.bookingId);
