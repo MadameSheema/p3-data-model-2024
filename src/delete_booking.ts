@@ -6,7 +6,7 @@ import { prismaCatchErrors, schemaCatchErrors } from "./error_handling";
 const deleteBooking = async (dogName: string, entryDate: string): Promise<void> => {
     const booking = await db.booking.findFirst({
         select: {
-             bookId: true,
+             bookingId: true,
         },
         where: {
             entryDate,
@@ -22,7 +22,7 @@ const deleteBooking = async (dogName: string, entryDate: string): Promise<void> 
     if(booking){
         await db.booking.delete({
             where: {
-                bookId: booking.bookId,
+                bookingId: booking.bookingId,
             }
         })
         console.log(`${dogName} booking has been deleted.`)

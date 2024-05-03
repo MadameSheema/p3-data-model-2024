@@ -55,7 +55,7 @@ const createBooking = async (entryDate: string, exitDate: string, price: number,
 const ownerLog = (fullName: string, ownerId: number) => console.log(`Created owner with full name: ${fullName} and id: ${ownerId}`);
 const dogLog = (name: string, dogId: number) => console.log(`Created dog with name: ${name} and id: ${dogId}`);
 const roomLog = (name: string, roomId: number) => console.log(`Created room with name: ${name} and id: ${roomId}`);
-const bookingLog = (bookingId: number) => console.log(`Created boowking with id: ${bookingId}`);
+const bookingLog = (bookingId: number) => console.log(`Created booking with id: ${bookingId}`);
 
 const gloria = await prismaCatchErrors(createOwner('Gloria Hornero', 'gloria@test.com', 'Sant Pere de Ribes'));
 if (gloria)  ownerLog(gloria.fullName, gloria.ownerId);
@@ -77,4 +77,4 @@ const dreamRoom = await prismaCatchErrors(createRoom('The Dream', 720, 60));
 if(dreamRoom) roomLog(dreamRoom.name, dreamRoom.roomId);
 
 const caninoBooking = await prismaCatchErrors(createBooking('2024-04-28T08:00:00Z', '2024-05-03T17:00:00Z', 300, canino.dogId, dreamRoom.roomId));
-if (caninoBooking) bookingLog(caninoBooking.bookId);
+if (caninoBooking) bookingLog(caninoBooking.bookingId);

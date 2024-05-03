@@ -28,6 +28,7 @@ model Dog {
   owner    Owner     @relation(fields: [ownerId], references: [ownerId])
   ownerId  Int
   bookings Booking[]
+
   @@unique([name, ownerId])
 }
 
@@ -40,12 +41,12 @@ model Room {
 }
 
 model Booking {
-  bookId    Int       @id @default(autoincrement())
+  bookingId Int       @id @default(autoincrement())
   entryDate DateTime
   exitDate  DateTime?
   Dog       Dog       @relation(fields: [dogId], references: [dogId])
   dogId     Int
   Room      Room      @relation(fields: [roomId], references: [roomId])
   roomId    Int
-  price     Int 
+  price     Int
 }
