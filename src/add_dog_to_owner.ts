@@ -31,13 +31,13 @@ const addDogToOwner = async (dogName: string, breed: string, email: string): Pro
 };
 
 const optionsSchema = object({
-    dogname: string(),
+    'dog-name': string(),
     breed: string(),
     email: string(),
 });
 
 const cli = async () => {
-    const options = await yargs(process.argv.slice(2)).option('dogname', { type: 'string', description: 'Name of the dog' })
+    const options = await yargs(process.argv.slice(2)).option('dog-name', { type: 'string', description: 'Name of the dog' })
         .option('breed', { type: 'string', description: 'Breed of the dog' })
         .option('email', { type: 'string', description: 'Email of the owner of the dog' })
         .usage('Adds a new dog to an existing owner.')
@@ -45,7 +45,7 @@ const cli = async () => {
 
     schemaCatchErrors(optionsSchema, options);
 
-    const dogName = options.dogname as string;
+    const dogName = options['dog-name'] as string;
     const breed = options.breed as string;
     const email = options.email as string;
 
