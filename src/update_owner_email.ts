@@ -18,19 +18,19 @@ const updateOwnerEmail = async (email: string, newEmail: string): Promise<void> 
 
 const optionsSchema = object({
     email: string(),
-    newemail: string(),
+    'new-email': string(),
 });
 
 const cli = async () => {
     const options = await yargs(process.argv.slice(2)).option('email', { type: 'string', description: 'Current email of the owner' })
-        .option('newemail', { type: 'string', description: 'New email of the owner' })
+        .option('new-email', { type: 'string', description: 'New email of the owner' })
         .usage('Adds a new dog to an existing owner.')
         .help().version(false).argv;
 
     schemaCatchErrors(optionsSchema, options);
 
     const email = options.email as string;
-    const newEmail = options.newemail as string;
+    const newEmail = options['new-email'] as string;
 
     await prismaCatchErrors(updateOwnerEmail(email, newEmail));
 };

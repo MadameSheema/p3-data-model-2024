@@ -10,25 +10,25 @@ const createBooking = async (roomNumber: number, dogName:string, entryDate: stri
 }*/
 
 const optionsSchema = object({
-    roomnumber: number(),
-    dogname: string(),
-    entrydate: string(),
+    'room-number': number(),
+    'dog-name': string(),
+    'entry-date': string(),
 });
 
 const cli = async () => {
     const options = await yargs(process.argv.slice(2))
-        .option('roomnumber', { type: 'number', description: 'Room number' })
-        .option('dogname', { type: 'string', description: 'Name of the dog' })
-        .option('entrydate', { type: 'string', description: 'Entry date of the dog in the hotel' })
+        .option('room-number', { type: 'number', description: 'Room number' })
+        .option('dog-name', { type: 'string', description: 'Name of the dog' })
+        .option('entry-date', { type: 'string', description: 'Entry date of the dog in the hotel' })
         .usage('Creates a booking using the dog name and the entry date.')
         .help().version(false).argv;
 
     schemaCatchErrors(optionsSchema, options);
 
     const now = new Date().toISOString();
-    const roomNumber = options.roomnumber as number;
-    const dogName = options.dogname as string;
-    const entryDate = options.entrydate as string;
+    const roomNumber = options['room-number'] as number;
+    const dogName = options['dog-name'] as string;
+    const entryDate = options['entry-date'] as string;
 
     if (entryDate < now) {
         console.log('A booking cannot be performed in the past.')
