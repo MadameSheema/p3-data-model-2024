@@ -9,7 +9,7 @@ export const prismaCatchErrors = async (myMethod: any) => {
         console.log(prismaError.message);
         process.exit(1);
     }
-}
+};
 
 export const schemaCatchErrors = async (optionsSchema: ZodObject<any>, options: any) => {
     try {
@@ -23,4 +23,4 @@ export const schemaCatchErrors = async (optionsSchema: ZodObject<any>, options: 
         process.exit(1);
     }
 
-}
+};

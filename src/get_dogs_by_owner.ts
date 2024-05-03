@@ -17,8 +17,8 @@ const getDogsByOwner = async (email: string): Promise<void> => {
             }
         }
     });
-    
-    for(const dog of dogs) {
+
+    for (const dog of dogs) {
         console.log(dog.name);
     };
 };
@@ -29,11 +29,11 @@ const optionsSchema = object({
 
 const cli = async () => {
     const options = await yargs(process.argv.slice(2)).option('email', { type: 'string', description: 'Email of the owner of the dog.' })
-    .usage('Retrieves all the dogs names for a given owner using the email.')
-    .help().version(false).argv;
+        .usage('Retrieves all the dogs names for a given owner using the email.')
+        .help().version(false).argv;
 
     schemaCatchErrors(optionsSchema, options);
-    
+
     const email = options.email as string;
     await prismaCatchErrors(getDogsByOwner(email));
 };

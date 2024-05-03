@@ -1,4 +1,4 @@
-import { object, string, type ZodError } from "zod";
+import { object, string } from "zod";
 import { db } from "../prisma/db";
 import yargs from 'yargs';
 import { prismaCatchErrors, schemaCatchErrors } from "./error_handling";
@@ -6,20 +6,20 @@ import { prismaCatchErrors, schemaCatchErrors } from "./error_handling";
 const deleteBooking = async (dogName: string, entryDate: string): Promise<void> => {
     const booking = await db.booking.findFirst({
         select: {
-             bookingId: true,
+            bookingId: true,
         },
         where: {
             entryDate,
             Dog: {
                 name: {
                     equals: dogName,
-                    mode: 'insensitive' 
+                    mode: 'insensitive'
                 }
             }
         },
     });
-    
-    if(booking){
+
+    if (booking) {
         await db.booking.delete({
             where: {
                 bookingId: booking.bookingId,
@@ -38,12 +38,12 @@ const optionsSchema = object({
 
 const cli = async () => {
     const options = await yargs(process.argv.slice(2)).option('dogname', { type: 'string', description: 'Name of the dog' })
-    .option('entrydate', { type: 'string', description: 'Entry date of the dog in the hotel' })
-    .usage('Deletes a booking using the dog name and the entry date.')
-    .help().version(false).argv;
+        .option('entrydate', { type: 'string', description: 'Entry date of the dog in the hotel' })
+        .usage('Deletes a booking using the dog name and the entry date.')
+        .help().version(false).argv;
 
     schemaCatchErrors(optionsSchema, options);
-    
+
     const dogName = options.dogname as string;
     const entryDate = options.entryDate as string;
     await prismaCatchErrors(deleteBooking(dogName, entryDate));

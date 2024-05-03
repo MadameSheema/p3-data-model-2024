@@ -17,11 +17,11 @@ const optionsSchema = object({
 
 const cli = async () => {
     const options = await yargs(process.argv.slice(2))
-    .option('roomnumber', { type: 'number', description: 'Room number'})
-    .option('dogname', { type: 'string', description: 'Name of the dog' })
-    .option('entrydate', { type: 'string', description: 'Entry date of the dog in the hotel' })
-    .usage('Creates a booking using the dog name and the entry date.')
-    .help().version(false).argv;
+        .option('roomnumber', { type: 'number', description: 'Room number' })
+        .option('dogname', { type: 'string', description: 'Name of the dog' })
+        .option('entrydate', { type: 'string', description: 'Entry date of the dog in the hotel' })
+        .usage('Creates a booking using the dog name and the entry date.')
+        .help().version(false).argv;
 
     schemaCatchErrors(optionsSchema, options);
 
@@ -35,7 +35,7 @@ const cli = async () => {
         process.exit(1);
     }
 
-    const roomId: {roomId: number}[] = await prismaCatchErrors(roomAvailability(roomNumber, entryDate));
+    const roomId: { roomId: number }[] = await prismaCatchErrors(roomAvailability(roomNumber, entryDate));
 
     if (roomId.length > 0) {
         console.log(`The room ${roomNumber} is booked for the given date. The book cannot be performed`);

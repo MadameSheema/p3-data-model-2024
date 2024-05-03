@@ -12,18 +12,18 @@ const getAllBreeds = async (): Promise<void> => {
         },
         distinct: 'breed',
     })
-    
-    for(const breed of breeds) {
+
+    for (const breed of breeds) {
         console.log(breed.breed);
     }
 };
 
 const cli = async () => {
     await yargs(process.argv.slice(2))
-    .usage('Retrieves all the breeds. No options needed.')
-    .help().
-    version(false)
-    .argv;
+        .usage('Retrieves all the breeds. No options needed.')
+        .help().
+        version(false)
+        .argv;
 
     await prismaCatchErrors(getAllBreeds());
 };

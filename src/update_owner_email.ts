@@ -8,12 +8,12 @@ const updateOwnerEmail = async (email: string, newEmail: string): Promise<void> 
         where: {
             email
         },
-        data: { 
+        data: {
             email: newEmail
         }
     });
 
-    console.log(`The email has been updated with ${newEmail}` );
+    console.log(`The email has been updated with ${newEmail}`);
 };
 
 const optionsSchema = object({
@@ -23,10 +23,10 @@ const optionsSchema = object({
 
 const cli = async () => {
     const options = await yargs(process.argv.slice(2)).option('email', { type: 'string', description: 'Current email of the owner' })
-    .option('newemail', { type: 'string', description: 'New email of the owner' })
-    .usage('Adds a new dog to an existing owner.')
-    .help().version(false).argv;
-    
+        .option('newemail', { type: 'string', description: 'New email of the owner' })
+        .usage('Adds a new dog to an existing owner.')
+        .help().version(false).argv;
+
     schemaCatchErrors(optionsSchema, options);
 
     const email = options.email as string;

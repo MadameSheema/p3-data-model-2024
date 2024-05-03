@@ -11,18 +11,18 @@ const getAllOwners = async (): Promise<void> => {
             fullName: 'asc',
         },
     })
-    
-    for(const owner of owners) {
+
+    for (const owner of owners) {
         console.log(owner.fullName);
     }
 };
 
 const cli = async () => {
     await yargs(process.argv.slice(2))
-    .usage('Retrieves all the dogs onwers names. No options needed.')
-    .help().
-    version(false)
-    .argv;
+        .usage('Retrieves all the dogs onwers names. No options needed.')
+        .help().
+        version(false)
+        .argv;
 
     await prismaCatchErrors(getAllOwners());
 };

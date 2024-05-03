@@ -11,18 +11,18 @@ const getAllDogs = async (): Promise<void> => {
             name: 'asc',
         },
     })
-    
-    for(const dog of dogs) {
+
+    for (const dog of dogs) {
         console.log(dog.name);
     }
 };
 
 const cli = async () => {
     await yargs(process.argv.slice(2))
-    .usage('Retrieves all the dogs names. No options needed.')
-    .help().
-    version(false)
-    .argv;
+        .usage('Retrieves all the dogs names. No options needed.')
+        .help().
+        version(false)
+        .argv;
 
     await prismaCatchErrors(getAllDogs());
 };
