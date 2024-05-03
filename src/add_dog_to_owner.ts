@@ -1,6 +1,6 @@
 import { db } from "../prisma/db";
 import yargs from 'yargs';
-import { object, string, ZodError } from 'zod';
+import { object, string } from 'zod';
 import { prismaCatchErrors, schemaCatchErrors } from "./error_handling";
 
 const addDogToOwner = async (dogName: string, breed: string, email: string): Promise<void> => {
@@ -41,11 +41,11 @@ const optionsSchema = object({
 
 const cli = async () => {
     const options = await yargs(process.argv.slice(2)).option('dogname', { type: 'string', description: 'Name of the dog' })
-    .option('breed', { type: 'string', description: 'Breed of the dog' })
-    .option('email', { type: 'string', description: 'Email of the owner of the dog' })
-    .usage('Adds a new dog to an existing owner.')
-    .help().version(false).argv;
-    
+        .option('breed', { type: 'string', description: 'Breed of the dog' })
+        .option('email', { type: 'string', description: 'Email of the owner of the dog' })
+        .usage('Adds a new dog to an existing owner.')
+        .help().version(false).argv;
+
     schemaCatchErrors(optionsSchema, options);
 
     const dogName = options.dogname as string;

@@ -5,6 +5,7 @@
   "devDependencies": {
     "@types/bun": "latest",
     "@types/yargs": "^17.0.32",
+    "commander": "^12.0.0",
     "prisma": "^5.13.0",
     "yargs": "^17.7.2",
     "zod": "^3.23.5"
@@ -23,6 +24,8 @@
     "get:dogs:by:owner": "bun src/get_dogs_by_owner.ts",
     "add:dog:to:owner": "bun src/add_dog_to_owner.ts",
     "delete:booking": "bun src/delete_booking.ts",
-    "update:owner:email": "bun src/update_owner_email.ts"
+    "update:owner:email": "bun src/update_owner_email.ts",
+    "create:booking": "bun src/create_booking.ts",
+    "room:availability": "bun src/get_room_availability.ts"
   }
 }
