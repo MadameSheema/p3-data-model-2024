@@ -1,56 +1,5 @@
 import { prismaCatchErrors } from '../src/error_handling';
-import { db } from './db';
-import { type Booking, type Dog, type Owner, type Room } from "@prisma/client";
-
-const createOwner = async (fullName: string, email:string, address: string): Promise<Owner> => {
-    console.log(`Creating owner with fullName: ${fullName}`);
-
-    return await db.owner.create({
-            data: {
-                fullName,
-                email,
-                address
-            }
-        })
-};
-
-const createDog = async (name: string, breed: string, ownerId: number): Promise<Dog> => {
-    console.log(`Creating dog with name: ${name}`);
-
-    return await db.dog.create({
-            data: {
-                name,
-                breed,
-                ownerId
-            }
-        })
-};
-
-const createRoom = async (name: string, roomNumber: number, size: number): Promise<Room> => {
-    console.log(`Creating room with name: ${name}`);
-
-    return await db.room.create({
-        data: {
-            name,
-            roomNumber,
-            size
-        }
-    })
-};
-
-const createBooking = async (dogId: number, roomId: number, entryDate: string, exitDate?: string, price?: number, ): Promise<Booking> => {
-    console.log(`Creating booking for the dogId: ${dogId}`);
-
-    return await db.booking.create({
-        data: {
-            dogId,
-            roomId,
-            entryDate,
-            exitDate,
-            price
-        }
-    })
-};
+import { createOwner, createDog, createRoom, createBooking } from './queries/create';
 
 const ownerLog = (fullName: string, ownerId: number) => console.log(`Created owner with full name: ${fullName} and id: ${ownerId}`);
 const dogLog = (name: string, dogId: number) => console.log(`Created dog with name: ${name} and id: ${dogId}`);
