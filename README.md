@@ -4,13 +4,13 @@
 * [Configuration](#configuration)
 * [Database seeding](#database-seeding)
 * [Crud operations](#crud-operations)
-  * [Retrieve dogs names](#retrieve-dogs-names)
+  * [Retrieve all dogs names](#retrieve-all-dogs-names)
   * [Retrieve all dogs breeds](#retrieve-all-dogs-breeds)
   * [Retrieve all owners names](#retrieve-all-owners-names)
   * [Get all the dogs an owner has](#get-all-the-dogs-an-owner-has)
   * [Get current booked rooms](#get-current-booked-rooms)
   * [Get room availability](#get-room-availability)
-  * [Add dog to owner](#add-dog-to-owner)
+  * [Add new dog to owner](#add-new-dog-to-owner)
   * [Update owner email](#update-owner-email)
   * [Create booking](#create-booking)
   * [Delete booking](#delete-booking)
@@ -65,7 +65,7 @@ bun seed
 
 Several CRUD operations have been implemented:
 
-### Retrieve dogs names
+### Retrieve all dogs names
 
 Display the command help:
 
@@ -161,7 +161,7 @@ Example:
 bun room:availability --room-number 720 --date 2024-05-02T17:00
 ```
 
-### Add dog to owner
+### Add new dog to owner
 
 Display the command help:
 
