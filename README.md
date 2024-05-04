@@ -12,6 +12,7 @@
   * [Get room availability](#get-room-availability)
   * [Add dog to owner](#add-dog-to-owner)
   * [Update owner email](#update-owner-email)
+  * [Create booking](#create-booking)
   * [Delete booking](#delete-booking)
 
 # Data Model
@@ -180,27 +181,25 @@ Example:
 bun add:dog:to:owner ---dog-name Latte --breed Mix --email gloria@test.com
 ```
 
-### Update owner email
+### Create booking
 
 Display the command help:
 
 ```bash
-bun update:owner:email --help
+bun create:booking --help
 ```
 
-Updates the email for a given owner.
+Creates a new booking. Room number, email, dog name and entry date are mandatory fields.
 
 ```bash
-bun update:owner:email ---email <currentEmail> --new-email <newEmail>
+bun create:booking --room-number <roomNumber> --email <ownerEmail> --dog-name <dogName> --entry-date <entryDate> --exit-date <exitDate> --price <price>
 ```
 
 Example:
 
 ```bash
-bun update:owner:email --email gloria@test.com --new-email glo@test.com
+bun create:booking --room-number 717 --email gloria@test.com --entry-date 2025-04-28T08:00:00.000Z --exit-date 2025-04-30T08:00:00.000Z --dog-name Xoco --price 100
 ```
-
-### Create booking
 
 ### Delete booking
 
@@ -221,4 +220,26 @@ Example:
 ```bash
 bun delete:booking --dogname canino --entrydate 2024-04-28T08:00:00.000Z
 ```
+
+### Update owner email
+
+Display the command help:
+
+```bash
+bun update:owner:email --help
+```
+
+Updates the email for a given owner.
+
+```bash
+bun update:owner:email ---email <currentEmail> --new-email <newEmail>
+```
+
+Example:
+
+```bash
+bun update:owner:email --email gloria@test.com --new-email glo@test.com
+```
+
+
     
