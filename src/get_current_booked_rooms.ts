@@ -1,37 +1,17 @@
 import yargs from "yargs";
-import { db } from "../prisma/db";
 import { prismaCatchErrors } from "./error_handling";
+import { findBookedRooms } from "../prisma/queries/find";
 
 const getBookedRooms = async (): Promise<void> => {
-    const now = new Date();
+    const now = new Date().toISOString();
+    const rooms = await findBookedRooms(now)
 
-    const rooms = await db.room.findMany({
-        select: {
-            name: true
-        },
-        where: {
-            bookings: {
-                some: {
-                    entryDate: {
-                        lte: now
-                    },
-                    OR: [
-                        {
-                            exitDate: {
-                                gte: now
-                            }
-                        },
-                        {
-                            exitDate: null
-                        }
-                    ]
-                }
-            }
+    if (rooms.length > 0) {
+        for (const room of rooms) {
+            console.log(room.name);
         }
-    });
-
-    for (const room of rooms) {
-        console.log(room.name);
+    } else {
+        console.log('All the rooms are available.');
     }
 };
 

@@ -1,19 +1,15 @@
 import yargs from "yargs";
-import { db } from "../prisma/db";
 import { prismaCatchErrors } from "./error_handling";
+import { findAllOwners } from "../prisma/queries/find";
 
 const getAllOwners = async (): Promise<void> => {
-    const owners = await db.owner.findMany({
-        select: {
-            fullName: true,
-        },
-        orderBy: {
-            fullName: 'asc',
-        },
-    })
-
-    for (const owner of owners) {
-        console.log(owner.fullName);
+    const owners = await findAllOwners();
+    if (owners.length > 0) {
+        for (const owner of owners) {
+            console.log(owner.fullName);
+        }
+    } else {
+        console.log('No owners were found.')
     }
 };
 

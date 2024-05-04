@@ -1,29 +1,15 @@
-import { db } from "../prisma/db";
 import yargs from 'yargs';
 import { object, string } from 'zod';
 import { prismaCatchErrors, schemaCatchErrors } from "./error_handling";
+import { findOwner } from "../prisma/queries/find";
+import { createDog } from "../prisma/queries/create";
 
 const addDogToOwner = async (dogName: string, breed: string, email: string): Promise<void> => {
-    const owner = await db.owner.findUnique({
-        select: {
-            email: true,
-            ownerId: true
-        },
-        where: {
-            email
-        }
-    });
+    const owner = await findOwner(email);
 
     if (owner) {
-        await db.dog.create({
-            data: {
-                name: dogName,
-                breed,
-                ownerId: owner?.ownerId
-            }
-        })
-
-        console.log(`Added ${dogName} to ${owner.email}`)
+        await createDog(dogName, breed, owner?.ownerId);
+        console.log(`Added ${dogName} to ${email}}`);
 
     } else {
         console.log(`Owner with email '${email}' not found.`);

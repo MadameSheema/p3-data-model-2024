@@ -1,31 +1,14 @@
 import { object, string } from "zod";
-import { db } from "../prisma/db";
 import yargs from 'yargs';
 import { prismaCatchErrors, schemaCatchErrors } from "./error_handling";
+import { deleteBooking } from '../prisma/queries/delete';
+import { findBooking } from "../prisma/queries/find";
 
-const deleteBooking = async (dogName: string, entryDate: string): Promise<void> => {
-    const booking = await db.booking.findFirst({
-        select: {
-            bookingId: true,
-        },
-        where: {
-            entryDate,
-            Dog: {
-                name: {
-                    equals: dogName,
-                    mode: 'insensitive'
-                }
-            }
-        },
-    });
-
+const deleteDogBooking = async (dogName: string, entryDate: string): Promise<void> => {
+    const booking = await findBooking(dogName, entryDate);
     if (booking) {
-        await db.booking.delete({
-            where: {
-                bookingId: booking.bookingId,
-            }
-        })
-        console.log(`${dogName} booking has been deleted.`)
+        await deleteBooking(booking.bookingId);
+        console.log(`${dogName} booking has been deleted.`);
     } else {
         console.log('Booking not found.');
     }
@@ -46,7 +29,7 @@ const cli = async () => {
 
     const dogName = options['dog-name'] as string;
     const entryDate = options['entry-date'] as string;
-    await prismaCatchErrors(deleteBooking(dogName, entryDate));
+    await prismaCatchErrors(deleteDogBooking(dogName, entryDate));
 };
 
 await cli();

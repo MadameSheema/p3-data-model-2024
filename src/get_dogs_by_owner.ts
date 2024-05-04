@@ -2,31 +2,12 @@ import { object, string, type ZodError } from "zod";
 import { db } from "../prisma/db";
 import yargs from 'yargs';
 import { prismaCatchErrors, schemaCatchErrors } from "./error_handling";
+import { findDogs, findOwner } from "../prisma/queries/find";
 
 const getDogsByOwner = async (email: string): Promise<void> => {
-    const dogs = await db.dog.findMany({
-        select: {
-            name: true
-        },
-        where: {
-            owner: {
-                email: {
-                    equals: email
-                },
-            }
-        },
-    });
-
+    const dogs = await findDogs(email);
     if (dogs.length === 0) {
-        const owner = await db.owner.findUnique({
-            select: {
-                email: true,
-            },
-            where: {
-                email: email
-            }
-        });
-
+        const owner = await findOwner(email);
         if (owner) {
             console.log(`Owner with email ${email} does not have any dog related.`);
         } else {

@@ -1,11 +1,11 @@
-import { PrismaClientValidationError } from '@prisma/client/runtime/library';
+import { PrismaClientInitializationError, PrismaClientValidationError } from '@prisma/client/runtime/library';
 import type { ZodError, ZodObject } from 'zod';
 
 export const prismaCatchErrors = async (myMethod: any) => {
     try {
         return await myMethod
     } catch (e) {
-        const prismaError = e as PrismaClientValidationError;
+        const prismaError = e as PrismaClientValidationError | PrismaClientInitializationError;
         console.log(prismaError.message);
         process.exit(1);
     }
@@ -22,5 +22,4 @@ export const schemaCatchErrors = async (optionsSchema: ZodObject<any>, options: 
         });
         process.exit(1);
     }
-
 };

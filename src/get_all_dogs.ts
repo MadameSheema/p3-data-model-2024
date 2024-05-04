@@ -1,19 +1,16 @@
 import yargs from "yargs";
-import { db } from "../prisma/db";
 import { prismaCatchErrors } from "./error_handling";
+import { findAllDogs } from "../prisma/queries/find";
 
 const getAllDogs = async (): Promise<void> => {
-    const dogs = await db.dog.findMany({
-        select: {
-            name: true,
-        },
-        orderBy: {
-            name: 'asc',
-        },
-    })
-
-    for (const dog of dogs) {
-        console.log(dog.name);
+    const dogs = await findAllDogs();
+    if (dogs.length > 0) {
+        for (const dog of dogs) {
+            console.log(dog.name);
+        }
+    }
+    else {
+        console.log('No dogs were found.')
     }
 };
 

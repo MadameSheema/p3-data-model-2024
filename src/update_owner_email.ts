@@ -1,18 +1,10 @@
-import { db } from "../prisma/db";
 import yargs from 'yargs';
-import { object, string, ZodError } from 'zod';
+import { object, string } from 'zod';
 import { prismaCatchErrors, schemaCatchErrors } from "./error_handling";
+import { updateOwnerEmail } from "../prisma/queries/update";
 
-const updateOwnerEmail = async (email: string, newEmail: string): Promise<void> => {
-    await db.owner.update({
-        where: {
-            email
-        },
-        data: {
-            email: newEmail
-        }
-    });
-
+const updateEmail = async (email: string, newEmail: string): Promise<void> => {
+    await updateOwnerEmail(email, newEmail);
     console.log(`The email has been updated with ${newEmail}`);
 };
 
@@ -31,8 +23,7 @@ const cli = async () => {
 
     const email = options.email as string;
     const newEmail = options['new-email'] as string;
-
-    await prismaCatchErrors(updateOwnerEmail(email, newEmail));
+    await prismaCatchErrors(updateEmail(email, newEmail));
 };
 
 await cli();

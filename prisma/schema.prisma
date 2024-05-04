@@ -28,7 +28,7 @@ model Dog {
 
 model Room {
   roomId     Int       @id @default(autoincrement())
-  roomNumber Int
+  roomNumber Int       @unique
   name       String
   size       Int
   bookings   Booking[]
