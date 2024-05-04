@@ -73,7 +73,7 @@ Display the command help:
 bun get:dogs --help
 ```
 
-Retrieves dogs names:
+Retrieves all the dogs names:
 
 ```bash
 bun get:dogs
@@ -87,7 +87,7 @@ Display the command help:
 bun get:breeds --help
 ```
 
-Retrieves dogs breeds:
+Retrieves all the dogs breeds:
 
 ```bash
 bun get:breeds
@@ -178,7 +178,7 @@ bun add:dog:to:owner ---dog-name <dogName> --breed <breed> --email <ownerEmail>
 Example:
 
 ```bash
-bun add:dog:to:owner ---dog-name Latte --breed Mix --email gloria@test.com
+bun add:dog:to:owner --dog-name Latte --breed Mix --email gloria@test.com
 ```
 
 ### Create booking
@@ -212,13 +212,13 @@ bun delete:booking --help
 Deletes a booking.
 
 ```bash
-bun delete:booking --dog-name <dogName> --entrydate <entryDate>
+bun delete:booking --dog-name <dogName> --entry-date <entryDate>
 ```
 
 Example:
 
 ```bash
-bun delete:booking --dogname canino --entrydate 2024-04-28T08:00:00.000Z
+bun delete:booking --dog-name canino --entry-date 2024-04-28T08:00:00.000Z
 ```
 
 ### Update owner email

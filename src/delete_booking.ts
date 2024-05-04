@@ -21,7 +21,9 @@ const optionsSchema = object({
 
 const cli = async () => {
     const options = await yargs(process.argv.slice(2)).option('dog-name', { type: 'string', description: 'Name of the dog' })
+        .demandOption('dog-name', 'Required')
         .option('entry-date', { type: 'string', description: 'Entry date of the dog in the hotel' })
+        .demandOption('entry-date', 'Required')
         .usage('Deletes a booking using the dog name and the entry date.')
         .help().version(false).argv;
 

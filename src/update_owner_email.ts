@@ -16,6 +16,7 @@ const optionsSchema = object({
 const cli = async () => {
     const options = await yargs(process.argv.slice(2)).option('email', { type: 'string', description: 'Current email of the owner' })
         .option('new-email', { type: 'string', description: 'New email of the owner' })
+        .demandOption('new-email', 'Required')
         .usage('Adds a new dog to an existing owner.')
         .help().version(false).argv;
 

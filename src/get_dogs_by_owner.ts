@@ -27,6 +27,7 @@ const optionsSchema = object({
 
 const cli = async () => {
     const options = await yargs(process.argv.slice(2)).option('email', { type: 'string', description: 'Email of the owner of the dog.' })
+        .demandOption('email', 'Required')
         .usage('Retrieves all the dogs names for a given owner using the email.')
         .help().version(false).argv;
 
