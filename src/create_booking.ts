@@ -61,8 +61,8 @@ const cli = async () => {
             const foundDog = dogs.find(dog => dog.name === dogName);
 
             if (foundDog) {
-                console.log(`The room ${roomNumber} is booked for the given date.`);
                 await prismaCatchErrors(createBooking(foundDog.dogId, room.roomId, entryDate, exitDate, price))
+                console.log(`Room ${roomNumber} booked for ${dogName}`);
             } else {
                 console.log(`The owner with ${email} does not have the dog: ${dogName}`);
                 process.exit(1);
