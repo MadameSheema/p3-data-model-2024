@@ -34,7 +34,6 @@ const cli = async () => {
         .usage('Creates a booking using at least the dog name, owner, email and the entry date.')
         .help().version(false).argv;
 
-
     schemaCatchErrors(optionsSchema, options);
     if ('exit-date' in options) schemaCatchErrors(exitDateSchema, options);
     if ('price' in options) schemaCatchErrors(priceSchema, options);
@@ -44,10 +43,8 @@ const cli = async () => {
     const email = options.email as string;
     const dogName = options['dog-name'] as string;
     const entryDate = new Date(options['entry-date'] as string).toISOString();
-    const exitDate = new Date(options['exit-date'] as string).toISOString();
+    const exitDate = 'exit-date' in options ? new Date(options['exit-date'] as string).toISOString() : options['exit-date'];
     const price = options.price as number;
-
-
 
     if (entryDate < now) {
         console.log('A booking cannot be performed in the past.')
