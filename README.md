@@ -152,13 +152,13 @@ bun room:availability --help
 Retrieves the availability for a specific room given an entry date.
 
 ```bash
-bun room:availability --rom-number <roomNumber> --entry-date <entryDate>
+bun room:availability --rom-number <roomNumber> --date <entryDate>
 ```
 
 Example:
 
 ```bash
-bun room:availability --room-number 720 --entry-date 2024-05-02T17:00:00.000Z
+bun room:availability --room-number 720 --date 2024-05-02T17:00
 ```
 
 ### Add dog to owner
@@ -198,7 +198,7 @@ bun create:booking --room-number <roomNumber> --email <ownerEmail> --dog-name <d
 Example:
 
 ```bash
-bun create:booking --room-number 717 --email gloria@test.com --entry-date 2025-04-28T08:00:00.000Z --exit-date 2025-04-30T08:00:00.000Z --dog-name Xoco --price 100
+bun create:booking --room-number 717 --email gloria@test.com --entry-date 2025-04-28T08:00 --exit-date 2025-04-30T08:00 --dog-name Xoco --price 100
 ```
 
 ### Delete booking
@@ -218,7 +218,7 @@ bun delete:booking --dog-name <dogName> --entry-date <entryDate>
 Example:
 
 ```bash
-bun delete:booking --dog-name canino --entry-date 2024-04-28T08:00:00.000Z
+bun delete:booking --dog-name canino --entry-date 2024-04-28T08:00
 ```
 
 ### Update owner email

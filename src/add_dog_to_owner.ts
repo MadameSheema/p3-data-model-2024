@@ -16,7 +16,6 @@ const addDogToOwner = async (dogName: string, breed: string, email: string): Pro
     }
 };
 
-
 const optionsSchema = object({
     'dog-name': string(),
     breed: string(),
