@@ -43,8 +43,8 @@ const cli = async () => {
     const roomNumber = options['room-number'] as number;
     const email = options.email as string;
     const dogName = options['dog-name'] as string;
-    const entryDate = options['entry-date'] as string;
-    const exitDate = options['exit-date'] as string;
+    const entryDate = new Date(options['entry-date'] as string).toISOString();
+    const exitDate = new Date(options['exit-date'] as string).toISOString();
     const price = options.price as number;
 
 

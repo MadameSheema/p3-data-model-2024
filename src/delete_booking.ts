@@ -30,7 +30,7 @@ const cli = async () => {
     schemaCatchErrors(optionsSchema, options);
 
     const dogName = options['dog-name'] as string;
-    const entryDate = options['entry-date'] as string;
+    const entryDate = new Date(options['entry-date'] as string).toISOString();
     await prismaCatchErrors(deleteDogBooking(dogName, entryDate));
 };
 

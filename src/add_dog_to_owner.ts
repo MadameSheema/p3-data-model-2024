@@ -33,6 +33,8 @@ const cli = async () => {
         .usage('Adds a new dog to an existing owner.')
         .help().version(false).argv;
 
+    schemaCatchErrors(optionsSchema, options);
+
     const dogName = options['dog-name'] as string;
     const breed = options.breed as string;
     const email = options.email as string;

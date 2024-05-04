@@ -25,7 +25,11 @@ if (gardenRoom) roomLog(gardenRoom.name, gardenRoom.roomId);
 const dreamRoom = await prismaCatchErrors(createRoom('The Dream', 720, 60));
 if(dreamRoom) roomLog(dreamRoom.name, dreamRoom.roomId);
 
-const caninoBooking = await prismaCatchErrors(createBooking(canino.dogId, dreamRoom.roomId, '2024-04-28T08:00:00Z', '2024-05-03T17:00:00Z', 300));
+const caninoEntry = new Date('2024-04-28T08:00').toISOString();
+const caninoExit = new Date('2024-05-03T17:00').toISOString();
+const avatarEntry = new Date('2024-04-28T08:00').toISOString();
+
+const caninoBooking = await prismaCatchErrors(createBooking(canino.dogId, dreamRoom.roomId, caninoEntry, caninoExit, 300));
 if (caninoBooking) bookingLog(caninoBooking.bookingId);
-const avatarBooking = await prismaCatchErrors(createBooking(avatar.dogId, jungleRoom.roomId, '2024-04-28T08:00:00Z'));
+const avatarBooking = await prismaCatchErrors(createBooking(avatar.dogId, jungleRoom.roomId, avatarEntry));
 if (avatarBooking) bookingLog(avatarBooking.bookingId);

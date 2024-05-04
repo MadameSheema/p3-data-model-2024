@@ -3,10 +3,10 @@ import yargs from 'yargs';
 import { prismaCatchErrors, schemaCatchErrors } from "./error_handling";
 import { findBookedRooms, findRoom } from "../prisma/queries/find";
 
-const roomAvailability = async (roomNumber: number, entryDate: string) => {
+const roomAvailability = async (roomNumber: number, date: string) => {
     const room = await findRoom(roomNumber);
     if (room) {
-        const bookedRooms = await findBookedRooms(entryDate);
+        const bookedRooms = await findBookedRooms(date);
         const foundRoom = bookedRooms.find(room => room.roomNumber === roomNumber);
         if (foundRoom) {
             console.log(`The room ${roomNumber} is booked for the given date.`);
@@ -36,7 +36,7 @@ const cli = async () => {
     schemaCatchErrors(optionsSchema, options);
 
     const roomNumber = options['room-number'] as number;
-    const entryDate = options['entry-date'] as string;
+    const entryDate = new Date(options['entry-date'] as string).toISOString();
 
     await prismaCatchErrors(roomAvailability(roomNumber, entryDate));
 };
