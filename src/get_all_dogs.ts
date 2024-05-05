@@ -10,7 +10,7 @@ const getAllDogs = async (): Promise<void> => {
         }
     }
     else {
-        console.log('No dogs were found.')
+        console.log('No dogs were found.');
     }
 };
 

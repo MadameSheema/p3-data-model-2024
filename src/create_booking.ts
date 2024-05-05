@@ -12,11 +12,11 @@ const optionsSchema = object({
 });
 
 const exitDateSchema = object({
-    'exit-date': string() 
+    'exit-date': string()
 });
 
 const priceSchema = object({
-    price: string() 
+    price: number()
 });
 
 const cli = async () => {

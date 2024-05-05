@@ -20,7 +20,7 @@ const roomAvailability = async (roomNumber: number, date: string) => {
 
 const optionsSchema = object({
     'room-number': number(),
-    'entry-date': string(),
+    'date': string(),
 });
 
 const cli = async () => {
@@ -29,16 +29,16 @@ const cli = async () => {
         .option('room-number', { type: 'number', description: 'Room number' })
         .demandOption('room-number', 'Required')
         .option('entry-date', { type: 'string', description: 'Entry date to hotel' })
-        .demandOption('entry-date', 'Required')
-        .usage('Checks if a room is available for a given entry date.')
+        .demandOption('date', 'Required')
+        .usage('Checks if a room is available for a given date.')
         .help().version(false).argv;
 
     schemaCatchErrors(optionsSchema, options);
 
     const roomNumber = options['room-number'] as number;
-    const entryDate = new Date(options['entry-date'] as string).toISOString();
+    const date = new Date(options['date'] as string).toISOString();
 
-    await prismaCatchErrors(roomAvailability(roomNumber, entryDate));
+    await prismaCatchErrors(roomAvailability(roomNumber, date));
 };
 
 await cli();

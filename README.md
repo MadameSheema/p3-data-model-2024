@@ -37,14 +37,14 @@ Execute all the following commands from the root directory of the project.
 
 2. Install all the dependencies
 
-```cli
+```bash
 bun install
 ```
 
 3. Start the database
 
 ```bash
-docker-compose up
+docker-compose up -d
 ```
 
 4. Apply the Prisma schema to the database
@@ -59,6 +59,14 @@ bun push:db
 
 ```bash
 bun seed
+```
+
+## Visualizing the database
+
+Data can be visualized using prisma studio, to open it execute
+
+```bash
+bun prisma:studio
 ```
 
 ## CRUD operations
@@ -218,7 +226,7 @@ bun delete:booking --dog-name <dogName> --entry-date <entryDate>
 Example:
 
 ```bash
-bun delete:booking --dog-name canino --entry-date 2024-04-28T08:00
+bun delete:booking --dog-name Canino --entry-date 2024-04-28T08:00
 ```
 
 ### Update owner email

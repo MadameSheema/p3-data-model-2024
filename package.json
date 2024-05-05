@@ -25,6 +25,7 @@
     "get:dogs": "bun src/get_all_dogs.ts",
     "get:dogs:by:owner": "bun src/get_dogs_by_owner.ts",
     "get:owners": "bun src/get_all_owners.ts",
+    "prisma:studio": "bunx prisma studio", 
     "push:db": "bunx prisma db push",
     "room:availability": "bun src/get_room_availability.ts",
     "seed": "bun prisma/seed.ts",

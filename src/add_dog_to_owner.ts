@@ -9,7 +9,7 @@ const addDogToOwner = async (dogName: string, breed: string, email: string): Pro
 
     if (owner) {
         await createDog(dogName, breed, owner?.ownerId);
-        console.log(`Added ${dogName} to ${email}}`);
+        console.log(`Added ${dogName} to ${email}`);
 
     } else {
         console.log(`Owner with email '${email}' not found.`);

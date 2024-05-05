@@ -9,7 +9,7 @@ const getAllOwners = async (): Promise<void> => {
             console.log(owner.fullName);
         }
     } else {
-        console.log('No owners were found.')
+        console.log('No owners were found.');
     }
 };
 

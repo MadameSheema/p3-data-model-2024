@@ -8,7 +8,7 @@ export const createOwner = async (fullName: string, email:string, address: strin
                 email,
                 address
             }
-        })
+        });
 };
 
 export const createDog = async (name: string, breed: string, ownerId: number): Promise<Dog> => {
@@ -18,7 +18,7 @@ export const createDog = async (name: string, breed: string, ownerId: number): P
                 breed,
                 ownerId
             }
-        })
+        });
 };
 
 export const createRoom = async (name: string, roomNumber: number, size: number): Promise<Room> => {
@@ -28,7 +28,7 @@ export const createRoom = async (name: string, roomNumber: number, size: number)
             roomNumber,
             size
         }
-    })
+    });
 };
 
 export const createBooking = async (dogId: number, roomId: number, entryDate: string, exitDate?: string, price?: number, ): Promise<Booking> => {
@@ -40,5 +40,5 @@ export const createBooking = async (dogId: number, roomId: number, entryDate: st
             exitDate,
             price
         }
-    })
+    });
 };
