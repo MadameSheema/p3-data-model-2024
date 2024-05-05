@@ -3,6 +3,7 @@
 * [Data model](#data-model)
 * [Configuration](#configuration)
 * [Database seeding](#database-seeding)
+* [Visualizing the database](#visualizing-the-database)
 * [Crud operations](#crud-operations)
   * [Retrieve all dogs names](#retrieve-all-dogs-names)
   * [Retrieve all dogs breeds](#retrieve-all-dogs-breeds)
